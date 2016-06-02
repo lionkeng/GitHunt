@@ -102,9 +102,12 @@ export class Entries {
 
     .then(() => {
       return knex('votes')
-        .where({ entry_id, username })
+        .where({ entry_id: entry_id })
         .select(['id', 'vote_value'])
-        .first();
+        .first()
+        .then(function(row) {
+          return row || {vote_value: 0};
+        });
     })
   }
 
