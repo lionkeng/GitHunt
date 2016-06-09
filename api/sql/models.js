@@ -109,6 +109,8 @@ export class Entries {
           return row || {vote_value: 0};
         });
     })
+
+    .then((vote) => vote || { vote_value: 0 });
   }
 
   submitRepository(repoFullName, username) {
